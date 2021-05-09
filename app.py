@@ -104,14 +104,14 @@ if st.button('Generate Text'):
     #prints top 10 unigrams, bigrams after removing stopwords
     st.write("Most common n-grams with stopword removal and without add-1 smoothing: \n")
     unigram_sw_removed = [p for p in unigram if p not in stop_words]
-    fdist = nltk.FreqDist(unigram_sw_removed)
+    udist = nltk.FreqDist(unigram_sw_removed)
     #st.write("Most common unigrams: ", fdist.most_common(10))
     bigram_sw_removed = []
     bigram_sw_removed.extend(list(ngrams(unigram_sw_removed, 2)))
     fdist = nltk.FreqDist(bigram_sw_removed)
     #st.write("\nMost common bigrams: ", fdist.most_common(10))
     st.write(pd.DataFrame({
-        'unigrams': fdist.most_common(10),
+        'unigrams': udist.most_common(10),
         'bigrams': fdist.most_common(10),
     }))
 
